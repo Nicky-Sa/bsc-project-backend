@@ -7,7 +7,7 @@ import {
 } from 'class-validator';
 import { Role } from '@prisma/client';
 
-export class AuthDto {
+export class SignUpDto {
   @IsEmail()
   @IsNotEmpty()
   username: string;
@@ -24,4 +24,13 @@ export class AuthDto {
 
   @IsEmpty()
   role?: Role;
+}
+
+export class LoginDto {
+  @IsEmail()
+  @IsNotEmpty()
+  username: string;
+
+  @IsNotEmpty()
+  password: string;
 }
