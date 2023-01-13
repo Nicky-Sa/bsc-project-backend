@@ -19,6 +19,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
+    "docker:db": "cd dev && docker-compose up -d --build",
     "prisma:migrate": "npx prisma migrate dev --name \"migrate\" ",
     "prisma:studio": "npx prisma studio -p 45436"
   },
