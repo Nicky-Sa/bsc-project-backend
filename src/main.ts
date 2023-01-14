@@ -9,3 +9,10 @@ async function bootstrap() {
 }
 
 bootstrap();
+
+/*
+reqId
+message
+statusCode
+data {result: ... }
+*/

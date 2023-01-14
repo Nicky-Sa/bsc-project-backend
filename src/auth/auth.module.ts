@@ -12,9 +12,3 @@ import { JwtStrategy } from './strategy';
 })
 export class AuthModule {}
 
-/*
-reqId
-message
-statusCode
-data {result: ... }
-*/
