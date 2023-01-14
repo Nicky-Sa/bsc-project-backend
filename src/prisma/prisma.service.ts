@@ -13,4 +13,9 @@ export class PrismaService extends PrismaClient {
       },
     });
   }
+
+  cleanDB() {
+    // transactions may help to keep the tables deletion in order
+    return this.user.deleteMany();
+  }
 }

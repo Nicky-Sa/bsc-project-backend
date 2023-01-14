@@ -7,7 +7,7 @@ export class User implements prismaUser {
   username: string;
   password: string;
   phoneNumber: string;
-  fullName: string;
+  fullName: string | null;
   role: Role;
 }
 

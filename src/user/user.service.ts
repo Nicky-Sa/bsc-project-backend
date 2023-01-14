@@ -3,6 +3,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { PartialUser, User } from './entities';
+import { UpdateUserDto } from './dto';
 
 @Injectable()
 export class UserService {
@@ -12,9 +13,7 @@ export class UserService {
     try {
       const salt = await bcrypt.genSalt();
       data.password = await bcrypt.hash(data.password, salt);
-      const user = await this.prismaService.user.create({ data });
-      delete user.password;
-      return user;
+      return await this.prismaService.user.create({ data });
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError) {
         if (error.code === 'P2002')
@@ -27,6 +26,17 @@ export class UserService {
   async findOne({ username }: PartialUser) {
     const user = await this.prismaService.user.findUnique({
       where: { username },
+    });
+    if (!user) {
+      throw new ForbiddenException('No such user');
+    }
+    return user;
+  }
+
+  async updateUser({ username }: PartialUser, dto: UpdateUserDto) {
+    const user = await this.prismaService.user.update({
+      where: { username },
+      data: dto,
     });
     if (!user) {
       throw new ForbiddenException('No such user');

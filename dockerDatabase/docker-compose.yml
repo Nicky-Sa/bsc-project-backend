@@ -2,7 +2,7 @@
 version: '3.8'
 services:
   # Docker connection string: postgres://postgres:postgres@localhost:5432/
-  database:
+  nest-framework-database:
     image: postgres
     container_name: nest-framework-database
     restart: always
@@ -15,6 +15,22 @@ services:
     ports:
       # systemPort:containerPort
       - "5434:5432"
+    networks:
+      - nest-framework
+
+  test-nest-framework-database:
+    image: postgres
+    container_name: test-nest-framework-database
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456ABCabc
+      POSTGRES_DB: nest-framework
+    volumes:
+      - nest-framework:/var/lib/postgresql/data
+    ports:
+      # systemPort:containerPort
+      - "5435:5432"
     networks:
       - nest-framework
 

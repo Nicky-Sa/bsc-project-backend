@@ -39,7 +39,7 @@ $ npm install
 $ npm run start
 
 # watch mode
-$ npm run start:dev
+$ npm run start:dockerDatabase
 
 # production mode
 $ npm run start:prod
