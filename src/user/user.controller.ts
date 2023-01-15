@@ -4,6 +4,7 @@ import {
   Get,
   Injectable,
   Patch,
+  Req,
   UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
@@ -11,6 +12,7 @@ import { JwtGuard } from '../auth/guard';
 import { GetUser } from '../auth/decorator';
 import { PartialUser, User } from './entities';
 import { UpdateUserDto } from './dto';
+import persianMessage from '../../utils/persian.message';
 
 @UseGuards(JwtGuard) // a guard for the controller
 @Controller('users')
@@ -19,15 +21,22 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Get('current')
-  userInfo(@GetUser() user: PartialUser) {
-    return user;
+  currentUser(@GetUser() user: PartialUser, @Req() request) {
+    console.log(request);
+    return {
+      data: user,
+      message: persianMessage.currentUser,
+    };
   }
 
   @Patch('update')
-  updateUser(
+  async updateUser(
     @GetUser('username') username: User['username'],
     @Body() dto: UpdateUserDto,
   ) {
-    return this.userService.updateUser({ username }, dto);
+    return {
+      data: await this.userService.updateUser({ username }, dto),
+      message: persianMessage.updateUser,
+    };
   }
 }

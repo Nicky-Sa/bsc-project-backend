@@ -23,7 +23,7 @@ export class AuthService {
     const user = await this.userService.findOne({ username: dto.username });
     const passwordCorrect = await bcrypt.compare(dto.password, user.password);
     if (passwordCorrect) {
-      return this.generateToken({ username: dto.username });
+      return await this.generateToken({ username: dto.username });
     } else {
       throw new ForbiddenException('Wrong password');
     }
