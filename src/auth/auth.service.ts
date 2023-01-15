@@ -5,6 +5,7 @@ import * as bcrypt from 'bcrypt';
 import { PartialUser, User } from '../user/entities';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
+import persianError from '../../utils/persian.error';
 
 @Injectable()
 export class AuthService {
@@ -25,7 +26,7 @@ export class AuthService {
     if (passwordCorrect) {
       return await this.generateToken({ username: dto.username });
     } else {
-      throw new ForbiddenException('Wrong password');
+      throw new ForbiddenException(persianError.wrongPassword);
     }
   }
 
