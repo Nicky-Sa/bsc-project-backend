@@ -4,7 +4,7 @@ import * as bcrypt from 'bcrypt';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { PartialUser, User } from './entities';
 import { UpdateUserDto } from './dto';
-import persianError from '../../utils/persian.error';
+import { EnglishErrors } from '../../utils/englishTexts';
 
 @Injectable()
 export class UserService {
@@ -29,7 +29,7 @@ export class UserService {
       where: { username },
     });
     if (!user) {
-      throw new ForbiddenException(persianError.noSuchUser);
+      throw new ForbiddenException(EnglishErrors.noSuchUser);
     }
     return user;
   }
@@ -40,7 +40,7 @@ export class UserService {
       data: dto,
     });
     if (!user) {
-      throw new ForbiddenException(persianError.noSuchUser);
+      throw new ForbiddenException(EnglishErrors.noSuchUser);
     }
     return user;
   }

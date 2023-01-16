@@ -1,7 +1,7 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginDto, SignUpDto } from './dto';
-import persianMessage from '../../utils/persian.message';
+import { EnglishMessages } from '../../utils/englishTexts';
 
 @Controller('auth')
 export class AuthController {
@@ -11,7 +11,7 @@ export class AuthController {
   async signup(@Body() dto: SignUpDto) {
     return {
       data: await this.authService.signup(dto),
-      message: persianMessage.signup,
+      message: EnglishMessages.successfulSignup,
     };
   }
 
@@ -20,7 +20,7 @@ export class AuthController {
   async login(@Body() dto: LoginDto) {
     return {
       data: await this.authService.login(dto),
-      message: persianMessage.login,
+      message: EnglishMessages.successfulLogi,
     };
   }
 }
