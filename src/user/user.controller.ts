@@ -34,7 +34,7 @@ export class UserController {
   ) {
     return {
       data: await this.userService.updateUser({ username }, dto),
-      message: EnglishMessages.successfulUpdateUse,
+      message: EnglishMessages.successfulUpdateUser,
     };
   }
 }

@@ -20,7 +20,7 @@ export class AuthController {
   async login(@Body() dto: LoginDto) {
     return {
       data: await this.authService.login(dto),
-      message: EnglishMessages.successfulLogi,
+      message: EnglishMessages.successfulLogin,
     };
   }
 }
