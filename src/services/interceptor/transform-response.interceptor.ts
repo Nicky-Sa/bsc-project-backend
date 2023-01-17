@@ -6,7 +6,6 @@ import {
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { v4 as uuidv4 } from 'uuid';
 
 export interface Response<T> {
   data: T;
@@ -26,7 +25,7 @@ export class TransformResponseInterceptor<T>
       map((response) => ({
         data: response.data,
         message: response.message,
-        requestId: uuidv4(),
+        requestId: context.switchToHttp().getRequest()['uuid'],
       })),
     );
   }

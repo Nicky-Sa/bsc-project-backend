@@ -1,12 +1,11 @@
+import { v4 as uuidv4 } from 'uuid';
 import { NextFunction, Request, Response } from 'express';
-import { Logger } from '../helper/colorize';
 
-export function logger(
+export function addUuid(
   request: Request,
   response: Response,
   next: NextFunction,
 ) {
-  Logger.log({ request, response });
-
+  request['uuid'] = uuidv4();
   next();
 }
