@@ -22,11 +22,16 @@ export class TransformResponseInterceptor<T>
     next: CallHandler,
   ): Observable<Response<T>> {
     return next.handle().pipe(
-      map((response) => ({
-        data: response.data,
-        message: response.message,
-        requestId: context.switchToHttp().getRequest()['uuid'],
-      })),
+      map((response) => {
+        if (response.data.hasOwnProperty('password')) {
+          delete response.data.password;
+        }
+        return {
+          data: response.data,
+          message: response.message,
+          requestId: context.switchToHttp().getRequest()['uuid'],
+        };
+      }),
     );
   }
 }
