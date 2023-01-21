@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { Observable, tap } from 'rxjs';
 import { Logger } from '../helper/colorize';
+import { gregorianToPersian } from '../helper/functions';
 
 @Injectable()
 export class LoggerInterceptor implements NestInterceptor {
@@ -18,7 +19,7 @@ export class LoggerInterceptor implements NestInterceptor {
     return next.handle().pipe(
       tap((data) =>
         Logger.log({
-          request: { body, path, uuid, time: now },
+          request: { body, path, uuid, time: gregorianToPersian(now, true) },
           response: data,
         }),
       ),
