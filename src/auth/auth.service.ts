@@ -2,7 +2,7 @@ import { ForbiddenException, Injectable } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { LoginDto, SignUpDto } from './dto';
 import * as bcrypt from 'bcrypt';
-import { PartialUser, User } from '../user/entities';
+import { User } from '../user/entities';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { EnglishErrors } from '../../utils/englishTexts';
@@ -17,20 +17,20 @@ export class AuthService {
 
   async signup(dto: SignUpDto) {
     await this.userService.create(dto as User);
-    return await this.generateToken({ username: dto.username });
+    return await this.generateToken(dto.username);
   }
 
   async login(dto: LoginDto) {
-    const user = await this.userService.findOne({ username: dto.username });
+    const user = await this.userService.findOne(dto.username);
     const passwordCorrect = await bcrypt.compare(dto.password, user.password);
     if (passwordCorrect) {
-      return await this.generateToken({ username: dto.username });
+      return await this.generateToken(dto.username);
     } else {
       throw new ForbiddenException(EnglishErrors.wrongPassword);
     }
   }
 
-  private async generateToken({ username }: PartialUser) {
+  private async generateToken(username: User['username']) {
     const payload = {
       sub: username,
     };

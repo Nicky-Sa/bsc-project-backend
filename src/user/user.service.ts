@@ -1,10 +1,9 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
-import * as bcrypt from 'bcrypt';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
-import { PartialUser, User } from './entities';
-import { UpdateUserDto } from './dto';
-import { EnglishErrors } from '../../utils/englishTexts';
+import { ForbiddenException, Injectable } from "@nestjs/common";
+import { PrismaService } from "../prisma/prisma.service";
+import * as bcrypt from "bcrypt";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
+import { User } from "./entities";
+import { EnglishErrors } from "../../utils/englishTexts";
 
 @Injectable()
 export class UserService {
@@ -24,7 +23,7 @@ export class UserService {
     }
   }
 
-  async findOne({ username }: PartialUser) {
+  async findOne(username: User['username']) {
     const user = await this.prismaService.user.findUnique({
       where: { username },
     });
@@ -34,10 +33,10 @@ export class UserService {
     return user;
   }
 
-  async updateUser({ username }: PartialUser, dto: UpdateUserDto) {
+  async updateUser(username: User"username"'], dto: UpdateUserDto) {
     const user = await this.prismaService.user.update({
       where: { username },
-      data: dto,
+      data: dt,
     });
     if (!user) {
       throw new ForbiddenException(EnglishErrors.noSuchUser);

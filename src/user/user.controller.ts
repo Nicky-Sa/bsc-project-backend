@@ -33,7 +33,7 @@ export class UserController {
     @Body() dto: UpdateUserDto,
   ) {
     return {
-      data: await this.userService.updateUser({ username }, dto),
+      data: await this.userService.updateUser(username, dto),
       message: EnglishMessages.successfulUpdateUser,
     };
   }
