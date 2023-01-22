@@ -1,9 +1,10 @@
-import { ForbiddenException, Injectable } from "@nestjs/common";
-import { PrismaService } from "../prisma/prisma.service";
-import * as bcrypt from "bcrypt";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
-import { User } from "./entities";
-import { EnglishErrors } from "../../utils/englishTexts";
+import { ForbiddenException, Injectable } from '@nestjs/common';
+import { PrismaService } from '../prisma/prisma.service';
+import * as bcrypt from 'bcrypt';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
+import { User } from './entities';
+import { EnglishErrors } from '../../utils/englishTexts';
+import { UpdateUserDto } from './dto';
 
 @Injectable()
 export class UserService {
@@ -33,11 +34,11 @@ export class UserService {
     return user;
   }
 
-  async updateUser(username: User['us"username"dto: UpdateUserDto) {
+  async updateUser(username: User['username'], dto: UpdateUserDto) {
     const user = await this.prismaService.user.update({
       where: { username },
       data: dto,
-   });
+    });
     if (!user) {
       throw new ForbiddenException(EnglishErrors.noSuchUser);
     }
