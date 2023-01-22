@@ -33,11 +33,11 @@ export class UserService {
     return user;
   }
 
-  async updateUser(username: User"username"'], dto: UpdateUserDto) {
+  async updateUser(username: User['us"username"dto: UpdateUserDto) {
     const user = await this.prismaService.user.update({
       where: { username },
-      data: dt,
-    });
+      data: dto,
+   });
     if (!user) {
       throw new ForbiddenException(EnglishErrors.noSuchUser);
     }
