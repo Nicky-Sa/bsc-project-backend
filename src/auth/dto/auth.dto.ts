@@ -1,21 +1,15 @@
-import {
-  IsEmail,
-  IsEmpty,
-  IsNotEmpty,
-  IsNumberString,
-  IsOptional,
-} from 'class-validator';
+import { IsEmail, IsEmpty, IsNotEmpty, IsNumberString, IsOptional } from 'class-validator';
 import { Role } from '@prisma/client';
 
 export class SignUpDto {
   @IsEmail()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'نام کاربری ضروری است.' })
   username: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'رمز ورود ضروری است.' })
   password: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumberString()
   phoneNumber: string;
 

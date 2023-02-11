@@ -5,15 +5,11 @@ import * as bcrypt from 'bcrypt';
 import { User } from '../user/entities';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
-import { EnglishErrors } from '../../utils/englishTexts';
+import { PersianErrors } from '../../utils/persianTexts';
 
 @Injectable()
 export class AuthService {
-  constructor(
-    private userService: UserService,
-    private jwtService: JwtService,
-    private configService: ConfigService,
-  ) {}
+  constructor(private userService: UserService, private jwtService: JwtService, private configService: ConfigService) {}
 
   async signup(dto: SignUpDto) {
     await this.userService.create(dto as User);
@@ -26,7 +22,7 @@ export class AuthService {
     if (passwordCorrect) {
       return await this.generateToken(dto.username);
     } else {
-      throw new ForbiddenException(EnglishErrors.wrongPassword);
+      throw new ForbiddenException(PersianErrors.wrongInfo);
     }
   }
 
@@ -35,7 +31,7 @@ export class AuthService {
       sub: username,
     };
     return {
-      access_token: await this.jwtService.signAsync(payload, {
+      accessToken: await this.jwtService.signAsync(payload, {
         expiresIn: this.configService.get('JWT_EXPIRATION'),
         secret: this.configService.get('JWT_SECRET'),
       }),

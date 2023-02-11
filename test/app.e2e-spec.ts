@@ -57,11 +57,7 @@ describe('App e2e', () => {
         return pactum.spec().post('/auth/signup').expectStatus(400);
       });
       it('should signup', () => {
-        return pactum
-          .spec()
-          .post('/auth/signup')
-          .withBody(signUpDto)
-          .expectStatus(201);
+        return pactum.spec().post('/auth/signup').withBody(signUpDto).expectStatus(201);
       });
     });
 
@@ -97,7 +93,7 @@ describe('App e2e', () => {
           .post('/auth/login')
           .withBody(loginDto)
           .expectStatus(200)
-          .stores('access_token', 'access_token');
+          .stores('accessToken', 'accessToken');
       });
     });
   });
@@ -109,7 +105,7 @@ describe('App e2e', () => {
           .spec()
           .get('/users/current')
           .withHeaders({
-            Authorization: 'Bearer $S{access_token}',
+            Authorization: 'Bearer $S{accessToken}',
           })
           .expectStatus(200)
           .inspect();
@@ -124,7 +120,7 @@ describe('App e2e', () => {
           .spec()
           .patch('/users/update')
           .withHeaders({
-            Authorization: 'Bearer $S{access_token}',
+            Authorization: 'Bearer $S{accessToken}',
           })
           .withBody(dto)
           .expectStatus(200)

@@ -1,9 +1,4 @@
-import {
-  CallHandler,
-  ExecutionContext,
-  Injectable,
-  NestInterceptor,
-} from '@nestjs/common';
+import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
 import { Observable, tap } from 'rxjs';
 import { Logger } from '../helper/colorize';
 import { gregorianToPersian } from '../helper/functions';
@@ -17,7 +12,7 @@ export class LoggerInterceptor implements NestInterceptor {
 
     return next.handle().pipe(
       tap((data) =>
-        Logger.log({
+        Logger.info({
           request: { body, path, uuid, time: gregorianToPersian(now, true) },
           response: data,
         }),

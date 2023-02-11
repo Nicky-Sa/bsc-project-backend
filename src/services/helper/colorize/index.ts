@@ -15,7 +15,12 @@ export class Logger {
     log(clc.yellow(message));
   }
 
-  static log(message: any) {
+  static info(message: any) {
     log(message);
+    log(
+      clc.cyan(
+        '-----------------------------------------------------------------------------',
+      ),
+    );
   }
 }

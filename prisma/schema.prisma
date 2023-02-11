@@ -20,7 +20,7 @@ model User {
     updatedAt               DateTime        @updatedAt
     username                String          @id
     password                String
-    phoneNumber             String          @unique
+    phoneNumber             String?         @unique
     fullName                String?
     role                    Role            @default(USER)
 

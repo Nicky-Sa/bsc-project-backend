@@ -1,9 +1,9 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { User } from './entities';
-import { EnglishErrors } from '../../utils/englishTexts';
+import { PersianErrors } from '../../utils/persianTexts';
 import { UpdateUserDto } from './dto';
 
 @Injectable()
@@ -17,8 +17,7 @@ export class UserService {
       return await this.prismaService.user.create({ data });
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError) {
-        if (error.code === 'P2002')
-          throw new ForbiddenException(`Duplication in ${error.meta.target}`);
+        if (error.code === 'P2002') throw new ForbiddenException(`فیلد تکراری: ${error.meta.target}`);
       }
       throw error;
     }
@@ -29,7 +28,7 @@ export class UserService {
       where: { username },
     });
     if (!user) {
-      throw new ForbiddenException(EnglishErrors.noSuchUser);
+      throw new ForbiddenException(PersianErrors.noSuchUser);
     }
     return user;
   }
@@ -40,7 +39,7 @@ export class UserService {
       data: dto,
     });
     if (!user) {
-      throw new ForbiddenException(EnglishErrors.noSuchUser);
+      throw new ForbiddenException(PersianErrors.noSuchUser);
     }
     return user;
   }

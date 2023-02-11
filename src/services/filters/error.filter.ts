@@ -1,12 +1,6 @@
-import {
-  ArgumentsHost,
-  Catch,
-  ExceptionFilter,
-  HttpException,
-  HttpStatus,
-} from '@nestjs/common';
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
-import { EnglishErrors } from '../../../utils/englishTexts';
+import { PersianErrors } from '../../../utils/persianTexts';
 import { Logger } from '../helper/colorize';
 
 @Catch()
@@ -17,10 +11,10 @@ export class ErrorFilter implements ExceptionFilter {
     let message: string;
     if (error instanceof HttpException) {
       status = error.getStatus();
-      message = (error as HttpException).message;
+      message = error.getResponse()['message'];
     } else {
       status = HttpStatus.INTERNAL_SERVER_ERROR;
-      message = EnglishErrors.internalError;
+      message = PersianErrors.internalError;
     }
     Logger.error(error.stack);
 
