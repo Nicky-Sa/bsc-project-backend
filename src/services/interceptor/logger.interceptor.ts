@@ -11,12 +11,15 @@ export class LoggerInterceptor implements NestInterceptor {
     const now = Date.now();
 
     return next.handle().pipe(
-      tap((data) =>
+      tap((data) => {
+        if (data.data.hasOwnProperty('password')) {
+          delete data.data.password;
+        } // password deleted here, and not shown in response actual body.
         Logger.info({
           request: { body, path, uuid, time: gregorianToPersian(now, true) },
           response: data,
-        }),
-      ),
+        });
+      }),
     );
   }
 }
