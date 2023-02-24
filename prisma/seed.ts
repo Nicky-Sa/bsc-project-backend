@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 const data = [
   {
-    name: 'bronze',
+    level: 'bronze',
     items: [
       {
         id: 'b1',
@@ -38,7 +38,7 @@ const data = [
     ],
   },
   {
-    name: 'silver',
+    level: 'silver',
     items: [
       {
         id: 's1',
@@ -72,7 +72,7 @@ const data = [
     ],
   },
   {
-    name: 'gold',
+    level: 'gold',
     items: [
       {
         id: 'g1',
@@ -110,10 +110,10 @@ const data = [
 async function main() {
   for (const _package of data) {
     await prisma.package.upsert({
-      where: { level: _package.name },
+      where: { level: _package.level },
       update: {},
       create: {
-        level: _package.name,
+        level: _package.level,
       },
     });
     for (const item of _package.items) {
@@ -122,7 +122,7 @@ async function main() {
         update: {},
         create: {
           id: item.id,
-          packageLevel: _package.name,
+          packageLevel: _package.level,
           key: item.key,
           value: item.value,
           unit: item?.unit,
