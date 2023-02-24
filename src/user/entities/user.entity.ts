@@ -9,6 +9,7 @@ export class User implements prismaUser {
   phoneNumber: string;
   fullName: string | null;
   role: Role;
+  currentPackageLevel: string | null;
 }
 
 export class PartialUser extends PartialType(User) {}

@@ -15,7 +15,11 @@ export class UserController {
   @Get('current')
   currentUser(@GetUser() user: PartialUser) {
     return {
-      data: user,
+      data: {
+        ...user,
+        // TODO: make it real?
+        balanceLeft: 0,
+      },
       message: PersianMessages.currentUser,
     };
   }

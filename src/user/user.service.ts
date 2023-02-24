@@ -26,6 +26,7 @@ export class UserService {
   async findOne(username: User['username']) {
     const user = await this.prismaService.user.findUnique({
       where: { username },
+      include: { Tags: true, Transactions: true },
     });
     if (!user) {
       throw new ForbiddenException(PersianErrors.noSuchUser);

@@ -11,17 +11,86 @@ datasource db {
 }
 
 enum Role {
-    USER
-    ADMIN
+  USER
+  ADMIN
 }
 
 model User {
-    createdAt               DateTime        @default(now())
-    updatedAt               DateTime        @updatedAt
-    username                String          @id
-    password                String
-    phoneNumber             String?         @unique
-    fullName                String?
-    role                    Role            @default(USER)
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  username            String        @id
+  password            String
+  phoneNumber         String?       @unique
+  fullName            String?
+  role                Role          @default(USER)
+  currentPackageLevel String?
+  Tags                Tag[]
+  Transactions        Transaction[]
+  associatedPackage   Package?      @relation(fields: [currentPackageLevel], references: [level])
+}
 
+model Tag {
+  id              Int               @id @default(autoincrement())
+  username        String
+  Location        TagLocation[]
+  Message         TagMessage[]
+  TagBatteryLevel TagBatteryLevel[]
+  associatedUser  User              @relation(fields: [username], references: [username])
+}
+
+model TagLocation {
+  id            Int      @id @default(autoincrement())
+  tagId         Int
+  lat           Float
+  lon           Float
+  date          DateTime
+  associatedTag Tag      @relation(fields: [tagId], references: [id])
+}
+
+model TagMessage {
+  id            Int      @id @default(autoincrement())
+  tagId         Int
+  type          String
+  text          String
+  date          DateTime
+  associatedTag Tag      @relation(fields: [tagId], references: [id])
+}
+
+model TagBatteryLevel {
+  id            Int      @id @default(autoincrement())
+  tagId         Int
+  level         Int
+  date          DateTime
+  associatedTag Tag      @relation(fields: [tagId], references: [id])
+}
+
+enum PackageLevel {
+  gold
+  silver
+  bronze
+}
+
+model PackageFeature {
+  id           String      @id
+  packageLevel String?
+  key          String
+  value        String
+  unit         String?
+  Package      Package? @relation(fields: [packageLevel], references: [level])
+}
+
+model Package {
+  level    String           @id
+  features PackageFeature[]
+  User     User[]
+}
+
+model Transaction {
+  id             Int      @id @default(autoincrement())
+  username       String
+  reason         String
+  amount         Int
+  status         String
+  date           DateTime
+  associatedUser User     @relation(fields: [username], references: [username])
 }

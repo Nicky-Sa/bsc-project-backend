@@ -9,6 +9,7 @@ export class Logger {
 
   static error(message: any) {
     log(clc.red(message));
+    log(clc.red('-----------------------------------------------------------------------------'));
   }
 
   static warn(message: any) {
@@ -17,10 +18,6 @@ export class Logger {
 
   static info(message: any) {
     log(message);
-    log(
-      clc.cyan(
-        '-----------------------------------------------------------------------------',
-      ),
-    );
+    log(clc.cyan('-----------------------------------------------------------------------------'));
   }
 }
