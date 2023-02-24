@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Injectable, Patch, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Injectable, Put, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { JwtGuard } from '../auth/guard';
 import { GetUser } from '../auth/decorator';
@@ -20,7 +20,7 @@ export class UserController {
     };
   }
 
-  @Patch('update')
+  @Put('update')
   async updateUser(@GetUser('username') username: User['username'], @Body() dto: UpdateUserDto) {
     return {
       data: await this.userService.updateUser(username, dto),

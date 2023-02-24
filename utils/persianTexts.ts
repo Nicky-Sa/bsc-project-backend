@@ -7,6 +7,7 @@ export enum PersianErrors {
 export enum PersianMessages {
   successfulSignup = 'ثبت‌نام با موفقیت انجام شد.',
   successfulLogin = 'ورود با موفقیت انجام شد.',
+  successfulLogout = 'خروج با موفقیت انجام شد.',
   currentUser = 'کاربر فعلی',
   successfulUpdateUser = 'اطلاعات کاربر با موفقیت به‌روزرسانی شد.',
 }

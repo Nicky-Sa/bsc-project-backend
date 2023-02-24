@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, HttpStatus, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, Res } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginDto, SignUpDto } from './dto';
 import { PersianMessages } from '../../utils/persianTexts';
@@ -34,6 +34,16 @@ export class AuthController {
     return {
       data: true,
       message: PersianMessages.successfulLogin,
+    };
+  }
+
+  @Get('logout')
+  async logout(@Res({ passthrough: true }) response: Response) {
+    response.cookie('accessToken', '', tokenCookieOptions);
+
+    return {
+      data: true,
+      message: PersianMessages.successfulLogout,
     };
   }
 }
