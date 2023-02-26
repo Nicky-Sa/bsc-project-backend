@@ -10,6 +10,7 @@ export class User implements prismaUser {
   fullName: string | null;
   role: Role;
   currentPackageLevel: string | null;
+  currentBalance: number;
 }
 
 export class PartialUser extends PartialType(User) {}

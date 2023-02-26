@@ -18,7 +18,7 @@ export class UserController {
       data: {
         ...user,
         // TODO: make it real?
-        balanceLeft: 0,
+        balanceLeft: 12,
       },
       message: PersianMessages.currentUser,
     };

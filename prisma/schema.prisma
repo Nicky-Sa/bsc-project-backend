@@ -24,6 +24,7 @@ model User {
   fullName            String?
   role                Role          @default(USER)
   currentPackageLevel String?
+  currentBalance      Int           @default(0)
   Tags                Tag[]
   Transactions        Transaction[]
   associatedPackage   Package?      @relation(fields: [currentPackageLevel], references: [level])
@@ -71,7 +72,7 @@ enum PackageLevel {
 }
 
 model PackageFeature {
-  id           String      @id
+  id           String   @id
   packageLevel String?
   key          String
   value        String
