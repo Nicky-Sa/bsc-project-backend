@@ -8,8 +8,9 @@ export class Logger {
   }
 
   static error(message: any) {
+    log(clc.cyan('Logger: '));
     log(clc.red(message));
-    log(clc.red('-----------------------------------------------------------------------------'));
+    log(clc.cyan('-----------------------------------------------------------------------------'));
   }
 
   static warn(message: any) {
@@ -17,6 +18,7 @@ export class Logger {
   }
 
   static info(message: any) {
+    log(clc.cyan('Logger: '));
     log(message);
     log(clc.cyan('-----------------------------------------------------------------------------'));
   }

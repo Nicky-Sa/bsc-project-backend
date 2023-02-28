@@ -1,9 +1,9 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaService } from '@/prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { User } from './entities';
-import { PersianErrors } from '../../utils/persianTexts';
+import { PersianErrors } from '@/utils/persianTexts';
 import { UpdateUserDto } from './dto';
 
 @Injectable()

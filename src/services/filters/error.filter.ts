@@ -1,7 +1,7 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
-import { PersianErrors } from '../../../utils/persianTexts';
-import { Logger } from '../helper/colorize';
+import { PersianErrors } from '@/utils/persianTexts';
+import { Logger } from '@/services/helper/colorize';
 
 @Catch()
 export class ErrorFilter implements ExceptionFilter {

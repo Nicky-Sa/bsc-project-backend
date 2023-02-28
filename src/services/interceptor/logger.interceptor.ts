@@ -1,7 +1,7 @@
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
 import { Observable, tap } from 'rxjs';
-import { Logger } from '../helper/colorize';
-import { gregorianToPersian } from '../helper/functions';
+import { Logger } from '@/services/helper/colorize';
+import { gregorianToPersian } from '@/services/helper/functions';
 
 @Injectable()
 export class LoggerInterceptor implements NestInterceptor {

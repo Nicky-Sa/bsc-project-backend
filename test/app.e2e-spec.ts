@@ -1,10 +1,10 @@
 import { Test } from '@nestjs/testing';
-import { AppModule } from '../src/app.module';
+import { AppModule } from '@/app.module';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
-import { PrismaService } from '../src/prisma/prisma.service';
+import { PrismaService } from '@/prisma/prisma.service';
 import * as pactum from 'pactum';
-import { LoginDto, SignUpDto } from '../src/auth/dto';
-import { UpdateUserDto } from '../src/user/dto';
+import { LoginDto, SignUpDto } from '@/auth/dto';
+import { UpdateUserDto } from '@/user/dto';
 
 describe('App e2e', () => {
   let app: INestApplication;

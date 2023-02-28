@@ -1,7 +1,7 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Post, Res } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginDto, SignUpDto } from './dto';
-import { PersianMessages } from '../../utils/persianTexts';
+import { PersianMessages } from "@/utils/persianTexts";
 import { Response } from 'express';
 
 const tokenCookieOptions = {

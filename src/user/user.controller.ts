@@ -1,10 +1,10 @@
 import { Body, Controller, Get, Injectable, Put, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
-import { JwtGuard } from '../auth/guard';
-import { GetUser } from '../auth/decorator';
+import { JwtGuard } from '@/auth/guard';
+import { GetUser } from '@/auth/decorator';
 import { PartialUser, User } from './entities';
 import { UpdateUserDto } from './dto';
-import { PersianMessages } from '../../utils/persianTexts';
+import { PersianMessages } from '@/utils/persianTexts';
 
 @UseGuards(JwtGuard) // a guard for the controller
 @Controller('users')
