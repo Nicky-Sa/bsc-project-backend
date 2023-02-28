@@ -5,11 +5,12 @@ import { FetchTagzDataService } from "@/models/fetch-tagz-data/fetch-tagz-data.s
 
 @Injectable()
 export class TagzDataService {
-  constructor(private fetchTagzDataService: FetchTagzDataService) {}
+  constructor(private fetchTagzDataService: FetchTagzDataService) {
+  }
 
   private initAxios() {
     const headers = {
-      Accept: 'application/json',
+      Accept: "application/json"
     };
 
     return axios.create({
@@ -20,8 +21,9 @@ export class TagzDataService {
   }
 
   async getBatteries() {
-    const newData = (await this.initAxios().get('/mock/tagzBatteries.json')).data;
-    await this.fetchTagzDataService.addBatteryLevel(newData);
+    const newData = (await this.initAxios().get("/mock/tagzBatteries.json")).data;
+    console.log(newData);
+    // await this.fetchTagzDataService.addBatteryLevel(newData);
     return true;
   }
 }

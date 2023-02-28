@@ -6,6 +6,7 @@ import { FetchTagzDataModule } from "@/models/fetch-tagz-data/fetch-tagz-data.mo
 @Module({
   controllers: [TagzDataController],
   providers: [TagzDataService],
-  imports: [FetchTagzDataModule],
+  imports: [FetchTagzDataModule]
 })
-export class TagzDataModule {}
+export class TagzDataModule {
+}

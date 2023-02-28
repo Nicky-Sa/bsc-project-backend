@@ -4,7 +4,9 @@ import { TagBatteryLevel } from "@/models/fetch-tagz-data/dto/updateTagz.dto";
 
 @Injectable()
 export class FetchTagzDataService {
-  constructor(private prismaService: PrismaService) {}
+  constructor(private prismaService: PrismaService) {
+  }
+
   async addBatteryLevel(data: TagBatteryLevel[]) {
     try {
       return await this.prismaService.tagBatteryLevel.createMany({ data });

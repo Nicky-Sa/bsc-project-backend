@@ -54,6 +54,7 @@ async function main() {
       data: {
         tagId: tagzBattery.tagNumber,
         level: tagzBattery.value,
+        date: tagzBattery.date
       },
     });
   }
