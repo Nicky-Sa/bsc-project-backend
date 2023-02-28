@@ -36,6 +36,7 @@ model Tag {
   Location        TagLocation[]
   Message         TagMessage[]
   TagBatteryLevel TagBatteryLevel[]
+  TagBalanceUsage TagBalanceUsage[]
   associatedUser  User              @relation(fields: [username], references: [username])
 }
 
@@ -44,7 +45,7 @@ model TagLocation {
   tagId         Int
   lat           Float
   lon           Float
-  date          DateTime
+  date          DateTime @default(now())
   associatedTag Tag      @relation(fields: [tagId], references: [id])
 }
 
@@ -53,7 +54,7 @@ model TagMessage {
   tagId         Int
   type          String
   text          String
-  date          DateTime
+  date          DateTime @default(now())
   associatedTag Tag      @relation(fields: [tagId], references: [id])
 }
 
@@ -61,7 +62,15 @@ model TagBatteryLevel {
   id            Int      @id @default(autoincrement())
   tagId         Int
   level         Int
-  date          DateTime
+  date          DateTime @default(now())
+  associatedTag Tag      @relation(fields: [tagId], references: [id])
+}
+
+model TagBalanceUsage {
+  id            Int      @id @default(autoincrement())
+  tagId         Int
+  amount        Int
+  date          DateTime @default(now())
   associatedTag Tag      @relation(fields: [tagId], references: [id])
 }
 
@@ -92,6 +101,6 @@ model Transaction {
   reason         String
   amount         Int
   status         String
-  date           DateTime
+  date           DateTime @default(now())
   associatedUser User     @relation(fields: [username], references: [username])
 }

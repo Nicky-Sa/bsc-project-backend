@@ -1,7 +1,7 @@
-import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
-import { Observable, tap } from 'rxjs';
-import { Logger } from '@/services/helper/colorize';
-import { gregorianToPersian } from '@/services/helper/functions';
+import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from "@nestjs/common";
+import { Observable, tap } from "rxjs";
+import { Logger } from "@/services/helper/colorize";
+import { gregorianToPersian } from "@/services/helper/functions";
 
 @Injectable()
 export class LoggerInterceptor implements NestInterceptor {
@@ -12,7 +12,7 @@ export class LoggerInterceptor implements NestInterceptor {
 
     return next.handle().pipe(
       tap((data) => {
-        if (data.data.hasOwnProperty('password')) {
+        if (data?.data?.hasOwnProperty('password')) {
           delete data.data.password;
         } // password deleted here, and not shown in response actual body.
         Logger.info({
