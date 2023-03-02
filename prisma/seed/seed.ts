@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { packagesData, tagzBatteries, tagzMessages } from './mockData';
+import { packagesData, tagzBatteries, tagzLocations, tagzMessages } from './mockData';
 
 const prisma = new PrismaClient();
 
@@ -54,7 +54,7 @@ async function main() {
       data: {
         tagId: tagzBattery.tagId,
         value: tagzBattery.value,
-        date: tagzBattery.date,
+        dateTime: tagzBattery.dateTime,
       },
     });
   }
@@ -66,6 +66,17 @@ async function main() {
         type: tagzMessage.type,
         text: tagzMessage.text,
         dateTime: tagzMessage.dateTime,
+      },
+    });
+  }
+
+  for (const tagzLocationsHistory of tagzLocations) {
+    await prisma.tagLocation.create({
+      data: {
+        tagId: tagzLocationsHistory.tagId,
+        lat: tagzLocationsHistory.lat,
+        lon: tagzLocationsHistory.lon,
+        dateTime: tagzLocationsHistory.dateTime,
       },
     });
   }

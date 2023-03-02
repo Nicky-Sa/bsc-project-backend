@@ -28,4 +28,9 @@ export class TagzDataService {
     const newData = (await this.initAxios().get('/mock/tagzMessages.json')).data;
     return await this.fetchTagzDataService.addTagMessage(newData);
   }
+
+  async getLocations() {
+    const newData = (await this.initAxios().get('/mock/tagzLocations.json')).data;
+    return await this.fetchTagzDataService.addTagLocation(newData);
+  }
 }

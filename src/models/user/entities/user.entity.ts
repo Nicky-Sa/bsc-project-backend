@@ -1,5 +1,5 @@
-import { Role, User as prismaUser } from "@prisma/client";
-import { PartialType } from "@nestjs/mapped-types";
+import { Role, User as prismaUser } from '@prisma/client';
+import { PartialType } from '@nestjs/mapped-types';
 
 export class User implements prismaUser {
   createdAt: Date;

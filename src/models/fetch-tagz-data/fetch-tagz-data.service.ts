@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@/models/prisma/prisma.service';
-import { TagBatteryLevel, TagMessage } from '@/models/fetch-tagz-data/dto/updateTagz.dto';
+import { TagBatteryLevel, TagLocation, TagMessage } from '@/models/fetch-tagz-data/dto/updateTagz.dto';
 
 @Injectable()
 export class FetchTagzDataService {
@@ -11,16 +11,16 @@ export class FetchTagzDataService {
       for (const record of data) {
         await this.prismaService.tagBatteryLevel.upsert({
           where: {
-            tagId_date: {
+            tagId_dateTime: {
               tagId: record.tagId,
-              date: record.date,
+              dateTime: record.dateTime,
             },
           },
           update: {},
           create: {
             tagId: record.tagId,
             value: record.value,
-            date: record.date,
+            dateTime: record.dateTime,
           },
         });
       }
@@ -51,6 +51,33 @@ export class FetchTagzDataService {
         });
       }
       return await this.prismaService.tagMessage.findMany({});
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async addTagLocation(data: TagLocation[]) {
+    try {
+      for (const record of data) {
+        await this.prismaService.tagLocation.upsert({
+          where: {
+            tagId_lat_lon_dateTime: {
+              tagId: record.tagId,
+              lat: record.lat,
+              lon: record.lon,
+              dateTime: record.dateTime,
+            },
+          },
+          update: {},
+          create: {
+            tagId: record.tagId,
+            lat: record.lat,
+            lon: record.lon,
+            dateTime: record.dateTime,
+          },
+        });
+      }
+      return await this.prismaService.tagLocation.findMany({});
     } catch (error) {
       throw error;
     }

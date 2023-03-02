@@ -21,4 +21,13 @@ export class TagzDataController {
       message: 'ok',
     };
   }
+
+  @Get('locations')
+  async getLocations() {
+    const data = await this.tagzDataService.getLocations();
+    return {
+      data,
+      message: 'ok',
+    };
+  }
 }
