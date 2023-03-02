@@ -1,22 +1,22 @@
 [
   {
-    "date": "1401/11/17",
-    "tagNumber": "1",
+    "date": "1401/11/23",
+    "tagId": 1,
     "value": 34
   },
   {
-    "date": "1401/11/17",
-    "tagNumber": "2",
+    "date": "1401/11/23",
+    "tagId": 2,
     "value": 12
   },
   {
-    "date": "1401/11/17",
-    "tagNumber": "3",
+    "date": "1401/11/23",
+    "tagId": 3,
     "value": 45
   },
   {
-    "date": "1401/11/17",
-    "tagNumber": "4",
+    "date": "1401/11/23",
+    "tagId": 4,
     "value": 9
   }
 ]

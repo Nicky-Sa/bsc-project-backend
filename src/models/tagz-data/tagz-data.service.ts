@@ -1,16 +1,15 @@
-import { Injectable } from "@nestjs/common";
-import axios from "axios";
-import * as process from "process";
-import { FetchTagzDataService } from "@/models/fetch-tagz-data/fetch-tagz-data.service";
+import { Injectable } from '@nestjs/common';
+import axios from 'axios';
+import * as process from 'process';
+import { FetchTagzDataService } from '@/models/fetch-tagz-data/fetch-tagz-data.service';
 
 @Injectable()
 export class TagzDataService {
-  constructor(private fetchTagzDataService: FetchTagzDataService) {
-  }
+  constructor(private fetchTagzDataService: FetchTagzDataService) {}
 
   private initAxios() {
     const headers = {
-      Accept: "application/json"
+      Accept: 'application/json',
     };
 
     return axios.create({
@@ -21,9 +20,12 @@ export class TagzDataService {
   }
 
   async getBatteries() {
-    const newData = (await this.initAxios().get("/mock/tagzBatteries.json")).data;
-    console.log(newData);
-    // await this.fetchTagzDataService.addBatteryLevel(newData);
-    return true;
+    const newData = (await this.initAxios().get('/mock/tagzBatteries.json')).data;
+    return await this.fetchTagzDataService.addTagBatteryLevel(newData);
+  }
+
+  async getMessages() {
+    const newData = (await this.initAxios().get('/mock/tagzMessages.json')).data;
+    return await this.fetchTagzDataService.addTagMessage(newData);
   }
 }

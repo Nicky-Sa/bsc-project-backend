@@ -1,62 +1,62 @@
 [
   {
     "month": "فروردین",
-    "tagNumber": "1",
+    "tagId": 1,
     "value": 3400
   },
   {
     "month": "فروردین",
-    "tagNumber": "2",
+    "tagId": 2,
     "value": 34300
   },
   {
     "month": "فروردین",
-    "tagNumber": "3",
+    "tagId": 3,
     "value": 4300
   },
   {
     "month": "فروردین",
-    "tagNumber": "4",
+    "tagId": 4,
     "value": 900
   },
   {
     "month": "اردیبهشت",
-    "tagNumber": "1",
+    "tagId": 1,
     "value": 1000
   },
   {
     "month": "اردیبهشت",
-    "tagNumber": "2",
+    "tagId": 2,
     "value": 9900
   },
   {
     "month": "اردیبهشت",
-    "tagNumber": "3",
+    "tagId": 3,
     "value": 2300
   },
   {
     "month": "اردیبهشت",
-    "tagNumber": "4",
+    "tagId": 4,
     "value": 13000
   },
   {
     "month": "خرداد",
-    "tagNumber": "1",
+    "tagId": 1,
     "value": 24500
   },
   {
     "month": "خرداد",
-    "tagNumber": "2",
+    "tagId": 2,
     "value": 2300
   },
   {
     "month": "خرداد",
-    "tagNumber": "3",
+    "tagId": 3,
     "value": 12800
   },
   {
     "month": "خرداد",
-    "tagNumber": "4",
+    "tagId": 4,
     "value": 16400
   }
 ]

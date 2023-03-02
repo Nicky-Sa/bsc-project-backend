@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-import { packagesData, tagzBatteries } from "./mockData";
+import { PrismaClient } from '@prisma/client';
+import { packagesData, tagzBatteries, tagzMessages } from './mockData';
 
 const prisma = new PrismaClient();
 
@@ -21,7 +21,7 @@ async function main() {
   for (let i = 0; i < 4; i++) {
     await prisma.tag.create({
       data: {
-        username: 'fateme@gmail.com',
+        username: 'testUser@gmail.com',
       },
     });
   }
@@ -52,9 +52,20 @@ async function main() {
   for (const tagzBattery of tagzBatteries) {
     await prisma.tagBatteryLevel.create({
       data: {
-        tagId: tagzBattery.tagNumber,
-        level: tagzBattery.value,
-        date: tagzBattery.date
+        tagId: tagzBattery.tagId,
+        value: tagzBattery.value,
+        date: tagzBattery.date,
+      },
+    });
+  }
+
+  for (const tagzMessage of tagzMessages) {
+    await prisma.tagMessage.create({
+      data: {
+        tagId: tagzMessage.tagId,
+        type: tagzMessage.type,
+        text: tagzMessage.text,
+        dateTime: tagzMessage.dateTime,
       },
     });
   }

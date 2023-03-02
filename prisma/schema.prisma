@@ -54,16 +54,18 @@ model TagMessage {
   tagId         Int
   type          String
   text          String
-  date          String
+  dateTime      String
   associatedTag Tag      @relation(fields: [tagId], references: [id])
+  @@unique([tagId, text, dateTime])
 }
 
 model TagBatteryLevel {
   id            Int      @id @default(autoincrement())
   tagId         Int
-  level         Int
+  value         Int
   date          String
   associatedTag Tag      @relation(fields: [tagId], references: [id])
+  @@unique([tagId, date])
 }
 
 model TagBalanceUsage {

@@ -9,7 +9,7 @@ export class Logger {
 
   static error(message: any) {
     log(clc.cyan('Logger: '));
-    log(clc.red(message));
+    log(clc.magentaBright(message));
     log(clc.cyan('-----------------------------------------------------------------------------'));
   }
 
