@@ -7,19 +7,19 @@ import {
 export class TagBatteryLevel implements Omit<prismaTagBatteryLevel, 'id'> {
   tagId: number;
   value: number;
-  dateTime: string;
+  dateTime: Date;
 }
 
 export class TagMessage implements Omit<prismaTagMessage, 'id'> {
   tagId: number;
   type: string;
   text: string;
-  dateTime: string;
+  dateTime: Date;
 }
 
 export class TagLocation implements Omit<prismaTagLocation, 'id'> {
   tagId: number;
   lat: number;
   lon: number;
-  dateTime: string;
+  dateTime: Date;
 }

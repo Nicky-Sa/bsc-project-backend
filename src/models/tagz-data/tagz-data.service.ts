@@ -19,18 +19,22 @@ export class TagzDataService {
     });
   }
 
-  async getBatteries() {
+  async numberOfTagz(username: string) {
+    return await this.fetchTagzDataService.numberOfTagz(username);
+  }
+
+  async getBatteries(username: string) {
     const newData = (await this.initAxios().get('/mock/tagzBatteries.json')).data;
-    return await this.fetchTagzDataService.addTagBatteryLevel(newData);
+    return await this.fetchTagzDataService.addTagBatteryLevel(newData, username);
   }
 
-  async getMessages() {
+  async getMessages(username: string) {
     const newData = (await this.initAxios().get('/mock/tagzMessages.json')).data;
-    return await this.fetchTagzDataService.addTagMessage(newData);
+    return await this.fetchTagzDataService.addTagMessage(newData, username);
   }
 
-  async getLocations() {
+  async getLocations(username: string) {
     const newData = (await this.initAxios().get('/mock/tagzLocations.json')).data;
-    return await this.fetchTagzDataService.addTagLocation(newData);
+    return await this.fetchTagzDataService.addTagLocation(newData, username);
   }
 }

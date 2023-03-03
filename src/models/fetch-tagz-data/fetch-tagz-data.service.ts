@@ -1,36 +1,47 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@/models/prisma/prisma.service';
 import { TagBatteryLevel, TagLocation, TagMessage } from '@/models/fetch-tagz-data/dto/updateTagz.dto';
+import { dbItemsTransform } from '@/models/fetch-tagz-data/functions';
 
 @Injectable()
 export class FetchTagzDataService {
   constructor(private prismaService: PrismaService) {}
 
-  async addTagBatteryLevel(data: TagBatteryLevel[]) {
+  async addTagBatteryLevel(data: TagBatteryLevel[], username: string) {
     try {
       for (const record of data) {
         await this.prismaService.tagBatteryLevel.upsert({
           where: {
             tagId_dateTime: {
               tagId: record.tagId,
-              dateTime: record.dateTime,
+              dateTime: new Date(record.dateTime),
             },
           },
           update: {},
           create: {
             tagId: record.tagId,
             value: record.value,
-            dateTime: record.dateTime,
+            dateTime: new Date(record.dateTime),
           },
         });
       }
-      return await this.prismaService.tagBatteryLevel.findMany({});
+      const items = await this.prismaService.tagBatteryLevel.findMany({
+        where: {
+          associatedTag: {
+            username: username,
+          },
+        },
+        orderBy: {
+          dateTime: 'desc',
+        },
+      });
+      return dbItemsTransform(items, 'tagId', 'dateTime', false);
     } catch (error) {
       throw error;
     }
   }
 
-  async addTagMessage(data: TagMessage[]) {
+  async addTagMessage(data: TagMessage[], username: string) {
     try {
       for (const record of data) {
         await this.prismaService.tagMessage.upsert({
@@ -38,7 +49,7 @@ export class FetchTagzDataService {
             tagId_text_dateTime: {
               tagId: record.tagId,
               text: record.text,
-              dateTime: record.dateTime,
+              dateTime: new Date(record.dateTime),
             },
           },
           update: {},
@@ -46,17 +57,27 @@ export class FetchTagzDataService {
             tagId: record.tagId,
             type: record.type,
             text: record.text,
-            dateTime: record.dateTime,
+            dateTime: new Date(record.dateTime),
           },
         });
       }
-      return await this.prismaService.tagMessage.findMany({});
+      const items = await this.prismaService.tagMessage.findMany({
+        where: {
+          associatedTag: {
+            username: username,
+          },
+        },
+        orderBy: {
+          dateTime: 'desc',
+        },
+      });
+      return dbItemsTransform(items, 'tagId', 'dateTime');
     } catch (error) {
       throw error;
     }
   }
 
-  async addTagLocation(data: TagLocation[]) {
+  async addTagLocation(data: TagLocation[], username: string) {
     try {
       for (const record of data) {
         await this.prismaService.tagLocation.upsert({
@@ -65,7 +86,7 @@ export class FetchTagzDataService {
               tagId: record.tagId,
               lat: record.lat,
               lon: record.lon,
-              dateTime: record.dateTime,
+              dateTime: new Date(record.dateTime),
             },
           },
           update: {},
@@ -73,11 +94,33 @@ export class FetchTagzDataService {
             tagId: record.tagId,
             lat: record.lat,
             lon: record.lon,
-            dateTime: record.dateTime,
+            dateTime: new Date(record.dateTime),
           },
         });
       }
-      return await this.prismaService.tagLocation.findMany({});
+      const items = await this.prismaService.tagLocation.findMany({
+        where: {
+          associatedTag: {
+            username: username,
+          },
+        },
+        orderBy: {
+          dateTime: 'desc',
+        },
+      });
+      return dbItemsTransform(items, 'tagId', 'dateTime');
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async numberOfTagz(username: string) {
+    try {
+      return await this.prismaService.tag.count({
+        where: {
+          username: username,
+        },
+      });
     } catch (error) {
       throw error;
     }

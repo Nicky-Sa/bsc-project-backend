@@ -14,7 +14,7 @@ async function main() {
   await prisma.user.create({
     data: {
       username: 'testUser@gmail.com',
-      password: 'XhjSpBS6zsKgPZ$',
+      password: '$2b$10$doAZYcY3eGswCsrMp.Nq5OBesh1oawQAciCqCU1KtnfjmaPM3GdSS',
     },
   });
 
@@ -54,7 +54,7 @@ async function main() {
       data: {
         tagId: tagzBattery.tagId,
         value: tagzBattery.value,
-        dateTime: tagzBattery.dateTime,
+        dateTime: new Date(tagzBattery.dateTime),
       },
     });
   }
@@ -65,7 +65,7 @@ async function main() {
         tagId: tagzMessage.tagId,
         type: tagzMessage.type,
         text: tagzMessage.text,
-        dateTime: tagzMessage.dateTime,
+        dateTime: new Date(tagzMessage.dateTime),
       },
     });
   }
@@ -76,7 +76,7 @@ async function main() {
         tagId: tagzLocationsHistory.tagId,
         lat: tagzLocationsHistory.lat,
         lon: tagzLocationsHistory.lon,
-        dateTime: tagzLocationsHistory.dateTime,
+        dateTime: new Date(tagzLocationsHistory.dateTime),
       },
     });
   }
