@@ -10,11 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  USER
-  ADMIN
-}
-
 model User {
   createdAt           DateTime      @default(now())
   updatedAt           DateTime      @updatedAt
@@ -22,7 +17,6 @@ model User {
   password            String
   phoneNumber         String?       @unique
   fullName            String?
-  role                Role          @default(USER)
   currentPackageLevel String?
   currentBalance      Int           @default(0)
   Tags                Tag[]

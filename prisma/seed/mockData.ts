@@ -260,8 +260,8 @@ export const tagzMessages = [
 export const tagzLocations = [
   {
     tagId: 1,
-    lat: 35.725159,
-    lon: 51.429717,
+    lat: 35.727861,
+    lon: 51.411113,
     dateTime: '2023-03-02T03:24:00.000Z',
   },
   {

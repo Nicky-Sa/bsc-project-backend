@@ -11,21 +11,6 @@ async function main() {
   await prisma.packageFeature.deleteMany({});
   await prisma.tagBatteryLevel.deleteMany({});
 
-  await prisma.user.create({
-    data: {
-      username: 'testUser@gmail.com',
-      password: '$2b$10$doAZYcY3eGswCsrMp.Nq5OBesh1oawQAciCqCU1KtnfjmaPM3GdSS',
-    },
-  });
-
-  for (let i = 0; i < 4; i++) {
-    await prisma.tag.create({
-      data: {
-        username: 'testUser@gmail.com',
-      },
-    });
-  }
-
   for (const _package of packagesData) {
     await prisma.package.upsert({
       where: { level: _package.level },
@@ -47,6 +32,23 @@ async function main() {
         },
       });
     }
+  }
+
+  await prisma.user.create({
+    data: {
+      username: 'testUser@gmail.com',
+      password: '$2b$10$doAZYcY3eGswCsrMp.Nq5OBesh1oawQAciCqCU1KtnfjmaPM3GdSS',
+      currentPackageLevel: 'gold',
+      currentBalance: 120_000,
+    },
+  });
+
+  for (let i = 0; i < 4; i++) {
+    await prisma.tag.create({
+      data: {
+        username: 'testUser@gmail.com',
+      },
+    });
   }
 
   for (const tagzBattery of tagzBatteries) {

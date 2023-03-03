@@ -1,4 +1,4 @@
-import { Role, User as prismaUser } from '@prisma/client';
+import { User as prismaUser } from '@prisma/client';
 import { PartialType } from '@nestjs/mapped-types';
 
 export class User implements prismaUser {
@@ -8,7 +8,6 @@ export class User implements prismaUser {
   password: string;
   phoneNumber: string;
   fullName: string | null;
-  role: Role;
   currentPackageLevel: string | null;
   currentBalance: number;
 }
