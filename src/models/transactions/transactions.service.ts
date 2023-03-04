@@ -4,18 +4,17 @@ import { dbItemsTransform } from "@/services/functions";
 
 @Injectable()
 export class TransactionsService {
-  constructor(private prismaService: PrismaService) {
-  }
+  constructor(private prismaService: PrismaService) {}
 
   async getAll(username: string) {
     const items = await this.prismaService.transaction.findMany({
       where: {
-        username: username
+        username: username,
       },
       orderBy: {
-        dateTime: "desc"
-      }
+        dateTime: 'desc',
+      },
     });
-    return dbItemsTransform(items, "", "dateTime");
+    return dbItemsTransform(items, '', 'dateTime');
   }
 }
