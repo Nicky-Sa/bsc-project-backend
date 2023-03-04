@@ -1,5 +1,5 @@
-import { PrismaClient } from '@prisma/client';
-import { packagesData, tagzBatteries, tagzLocations, tagzMessages } from './mockData';
+import { PrismaClient } from "@prisma/client";
+import { packagesData, tagzBalanceUsages, tagzBatteries, tagzLocations, tagzMessages, transactions } from "./mockData";
 
 const prisma = new PrismaClient();
 
@@ -67,19 +67,40 @@ async function main() {
         tagId: tagzMessage.tagId,
         type: tagzMessage.type,
         text: tagzMessage.text,
-        dateTime: new Date(tagzMessage.dateTime),
+        dateTime: new Date(tagzMessage.dateTime)
       },
     });
   }
 
-  for (const tagzLocationsHistory of tagzLocations) {
+  for (const tagzLocation of tagzLocations) {
     await prisma.tagLocation.create({
       data: {
-        tagId: tagzLocationsHistory.tagId,
-        lat: tagzLocationsHistory.lat,
-        lon: tagzLocationsHistory.lon,
-        dateTime: new Date(tagzLocationsHistory.dateTime),
-      },
+        tagId: tagzLocation.tagId,
+        lat: tagzLocation.lat,
+        lon: tagzLocation.lon,
+        dateTime: new Date(tagzLocation.dateTime)
+      }
+    });
+  }
+
+  for (const tagzBalanceUsage of tagzBalanceUsages) {
+    await prisma.tagBalanceUsage.create({
+      data: {
+        tagId: tagzBalanceUsage.tagId,
+        value: tagzBalanceUsage.value,
+        month: tagzBalanceUsage.month
+      }
+    });
+  }
+  for (const transaction of transactions) {
+    await prisma.transaction.create({
+      data: {
+        username: transaction.username,
+        reason: transaction.reason,
+        value: transaction.value,
+        status: transaction.status,
+        dateTime: new Date(transaction.dateTime)
+      }
     });
   }
 }

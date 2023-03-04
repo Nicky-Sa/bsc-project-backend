@@ -3,6 +3,7 @@ import { FetchTagzDataService } from "@/models/fetch-tagz-data/fetch-tagz-data.s
 
 @Module({
   providers: [FetchTagzDataService],
-  exports: [FetchTagzDataService],
+  exports: [FetchTagzDataService]
 })
-export class FetchTagzDataModule {}
+export class FetchTagzDataModule {
+}

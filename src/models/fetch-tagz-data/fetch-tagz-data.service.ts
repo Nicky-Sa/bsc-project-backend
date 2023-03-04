@@ -1,11 +1,12 @@
-import { Injectable } from '@nestjs/common';
-import { PrismaService } from '@/models/prisma/prisma.service';
-import { TagBatteryLevel, TagLocation, TagMessage } from '@/models/fetch-tagz-data/dto/updateTagz.dto';
-import { dbItemsTransform } from '@/models/fetch-tagz-data/functions';
+import { Injectable } from "@nestjs/common";
+import { PrismaService } from "@/models/prisma/prisma.service";
+import { TagBalanceUsage, TagBatteryLevel, TagLocation, TagMessage } from "@/models/fetch-tagz-data/dto/updateTagz.dto";
+import { dbItemsTransform } from "@/services/functions";
 
 @Injectable()
 export class FetchTagzDataService {
-  constructor(private prismaService: PrismaService) {}
+  constructor(private prismaService: PrismaService) {
+  }
 
   async addTagBatteryLevel(data: TagBatteryLevel[], username: string) {
     try {
@@ -105,10 +106,44 @@ export class FetchTagzDataService {
           },
         },
         orderBy: {
-          dateTime: 'desc',
-        },
+          dateTime: "desc"
+        }
       });
-      return dbItemsTransform(items, 'tagId', 'dateTime');
+      return dbItemsTransform(items, "tagId", "dateTime");
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async addTagBalanceUsage(data: TagBalanceUsage[], username: string) {
+    try {
+      for (const record of data) {
+        await this.prismaService.tagBalanceUsage.upsert({
+          where: {
+            tagId_month: {
+              tagId: record.tagId,
+              month: record.month
+            }
+          },
+          update: {},
+          create: {
+            tagId: record.tagId,
+            value: record.value,
+            month: record.month
+          }
+        });
+      }
+      const items = await this.prismaService.tagBalanceUsage.findMany({
+        where: {
+          associatedTag: {
+            username: username
+          }
+        },
+        orderBy: {
+          id: "desc"
+        }
+      });
+      return dbItemsTransform(items, "tagId", "");
     } catch (error) {
       throw error;
     }
@@ -118,8 +153,8 @@ export class FetchTagzDataService {
     try {
       return await this.prismaService.tag.count({
         where: {
-          username: username,
-        },
+          username: username
+        }
       });
     } catch (error) {
       throw error;

@@ -105,121 +105,101 @@ export const packagesData = [
 
 export const tagzBatteries = [
   {
-    username: 'fateme@gmail.com',
     dateTime: '2023-03-01T20:30:00.000Z',
     tagId: 1,
     value: 34,
   },
   {
-    username: 'fateme@gmail.com',
     dateTime: '2023-03-01T20:30:00.000Z',
     tagId: 2,
     value: 12,
   },
   {
-    username: 'fateme@gmail.com',
     dateTime: '2023-03-01T20:30:00.000Z',
     tagId: 3,
     value: 45,
   },
   {
-    username: 'fateme@gmail.com',
     dateTime: '2023-03-01T20:30:00.000Z',
     tagId: 4,
     value: 9,
   },
   {
-    username: 'fateme@gmail.com',
     dateTime: '2023-03-02T20:30:00.000Z',
     tagId: 1,
     value: 11,
   },
   {
-    username: 'fateme@gmail.com',
     dateTime: '2023-03-02T20:30:00.000Z',
     tagId: 2,
     value: 99,
   },
   {
-    username: 'fateme@gmail.com',
     dateTime: '2023-03-02T20:30:00.000Z',
     tagId: 3,
     value: 100,
   },
   {
-    username: 'fateme@gmail.com',
     dateTime: '2023-03-02T20:30:00.000Z',
     tagId: 4,
     value: 40,
   },
   {
-    username: 'fateme@gmail.com',
     dateTime: '2023-03-03T20:30:00.000Z',
     tagId: 1,
     value: 83,
   },
   {
-    username: 'fateme@gmail.com',
     dateTime: '2023-03-03T20:30:00.000Z',
     tagId: 2,
     value: 34,
   },
   {
-    username: 'fateme@gmail.com',
     dateTime: '2023-03-03T20:30:00.000Z',
     tagId: 3,
     value: 29,
   },
   {
-    username: 'fateme@gmail.com',
     dateTime: '2023-03-03T20:30:00.000Z',
     tagId: 4,
     value: 17,
   },
   {
-    username: 'fateme@gmail.com',
     dateTime: '2023-03-04T20:30:00.000Z',
     tagId: 1,
     value: 23,
   },
   {
-    username: 'fateme@gmail.com',
     dateTime: '2023-03-04T20:30:00.000Z',
     tagId: 2,
     value: 87,
   },
   {
-    username: 'fateme@gmail.com',
     dateTime: '2023-03-04T20:30:00.000Z',
     tagId: 3,
     value: 36,
   },
   {
-    username: 'fateme@gmail.com',
     dateTime: '2023-03-04T20:30:00.000Z',
     tagId: 4,
     value: 20,
   },
   {
-    username: 'fateme@gmail.com',
     dateTime: '2023-03-05T20:30:00.000Z',
     tagId: 1,
     value: 76,
   },
   {
-    username: 'fateme@gmail.com',
     dateTime: '2023-03-05T20:30:00.000Z',
     tagId: 2,
     value: 4,
   },
   {
-    username: 'fateme@gmail.com',
     dateTime: '2023-03-05T20:30:00.000Z',
     tagId: 3,
     value: 12,
   },
   {
-    username: 'fateme@gmail.com',
     dateTime: '2023-03-05T20:30:00.000Z',
     tagId: 4,
     value: 98,
@@ -281,6 +261,93 @@ export const tagzLocations = [
     tagId: 4,
     lat: 35.702592,
     lon: 51.324975,
-    dateTime: '2023-03-02T03:28:00.000Z',
+    dateTime: "2023-03-02T03:28:00.000Z"
+  }
+];
+
+export const tagzBalanceUsages = [
+  {
+    month: "فروردین",
+    tagId: 1,
+    value: 3400
   },
+  {
+    month: "فروردین",
+    tagId: 2,
+    value: 34300
+  },
+  {
+    month: "فروردین",
+    tagId: 3,
+    value: 4300
+  },
+  {
+    month: "فروردین",
+    tagId: 4,
+    value: 900
+  },
+  {
+    month: "اردیبهشت",
+    tagId: 1,
+    value: 1000
+  },
+  {
+    month: "اردیبهشت",
+    tagId: 2,
+    value: 9900
+  },
+  {
+    month: "اردیبهشت",
+    tagId: 3,
+    value: 2300
+  },
+  {
+    month: "اردیبهشت",
+    tagId: 4,
+    value: 13000
+  },
+  {
+    month: "خرداد",
+    tagId: 1,
+    value: 24500
+  },
+  {
+    month: "خرداد",
+    tagId: 2,
+    value: 2300
+  },
+  {
+    month: "خرداد",
+    tagId: 3,
+    value: 12800
+  },
+  {
+    month: "خرداد",
+    tagId: 4,
+    value: 16400
+  }
+];
+
+export const transactions = [
+  {
+    username: "testUser@gmail.com",
+    reason: "خرید پکیج طلایی",
+    value: 450_000,
+    status: "موفق",
+    dateTime: "2023-03-05T06:28:00.000Z"
+  },
+  {
+    username: "testUser@gmail.com",
+    reason: "خرید پکیج طلایی",
+    value: 450_000,
+    status: "درحال بررسی",
+    dateTime: "2023-03-05T06:24:00.000Z"
+  },
+  {
+    username: "testUser@gmail.com",
+    reason: "خرید پکیج نقره‌ای",
+    value: 400_000,
+    status: "ناموفق",
+    dateTime: "2023-02-04T07:34:00.000Z"
+  }
 ];
