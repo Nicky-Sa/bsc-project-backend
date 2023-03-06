@@ -30,7 +30,7 @@ services:
       JWT_EXPIRATION: "5d"
       APP_DOMAIN: "http://localhost:3000"
       API_DOMAIN: "http://localhost:5000"
-      PORT: "5002"
+      PORT: "5000"
     depends_on:
       - bsc-project-database
     command: ./docker-entrypoint.sh
