@@ -1,11 +1,11 @@
-import { ForbiddenException, Injectable } from "@nestjs/common";
-import { UserService } from "@/models/user/user.service";
-import { LoginDto, SignUpDto } from "models/auth/dto";
-import * as bcrypt from "bcrypt";
-import { User } from "@/models/user/entities";
-import { JwtService } from "@nestjs/jwt";
-import { ConfigService } from "@nestjs/config";
-import { PersianErrors } from "@/utils/persianTexts";
+import { ForbiddenException, Injectable } from '@nestjs/common';
+import { UserService } from '@/models/user/user.service';
+import { LoginDto, SignUpDto } from 'models/auth/dto';
+import * as bcrypt from 'bcrypt';
+import { User } from '@/models/user/entities';
+import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
+import { PersianErrors } from '@/utils/persianTexts';
 
 @Injectable()
 export class AuthService {

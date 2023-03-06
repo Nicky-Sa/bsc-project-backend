@@ -1,8 +1,8 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, Res } from "@nestjs/common";
-import { AuthService } from "models/auth/auth.service";
-import { LoginDto, SignUpDto } from "models/auth/dto";
-import { PersianMessages } from "@/utils/persianTexts";
-import { Response } from "express";
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, Res } from '@nestjs/common';
+import { AuthService } from 'models/auth/auth.service';
+import { LoginDto, SignUpDto } from 'models/auth/dto';
+import { PersianMessages } from '@/utils/persianTexts';
+import { Response } from 'express';
 
 const tokenCookieOptions = {
   sameSite: 'none' as const,

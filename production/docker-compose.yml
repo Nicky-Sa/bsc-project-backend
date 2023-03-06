@@ -1,0 +1,66 @@
+# just a copy of the main docker-compose
+version: '3.8'
+services:
+  # Docker connection string: postgres://postgres:postgres@localhost:5432/
+  bsc-project-database:
+    image: "postgres"
+    container_name: "bsc-project-database"
+    hostname: "bsc-project-database"
+    restart: always
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "123456ABCabc"
+      POSTGRES_DB: "bsc-project-database"
+    volumes:
+      - bsc-project-volume:/var/lib/postgresql/data
+    ports:
+      # systemPort:containerPort
+      - "5432:5432"
+
+  bsc-project-backend:
+    container_name: "bsc-project-backend"
+    image: "bsc-project-backend"
+    hostname: "bsc-project-backend"
+    restart: always
+    build:
+      context: ./bsc-project-backend
+    environment:
+      DATABASE_URL: "postgres://postgres:ewqwr8934Sf3Dq@bsc-project-database:5432/bsc-project-database" # change database to server ip for prisma cloud
+      APP_NAME: "maskanplus"
+      APP_DOMAIN: "https://maskanplus.ir"
+      DOMAIN: "maskanplus.ir"
+      JWT_PRIVATE_KEY: "I am a secret key!"
+      PORT: "5000"
+      EXPIRES_IN: "9000000000"
+      NODE_ENV: "production"
+      FARAZ_BASE_URL: "https://api2.ippanel.com/api/v1/sms/pattern/normal/send"
+      FARAZ_API_KEY: "Xtq2Hp66FLHEpJAAGanUCzcD-Jtn2c1cqeXzECSJpqA="
+      FARAZ_OTP_PATTERN_CODE: "5d3z9sk89cxrw0b"
+      FARAZ_INFO_PATTERN_CODE: "sbi22m043m5kphe"
+      ZARINPAL_BASE_URL: "zarinpal.com"
+      MERCHANT_ID: "29759355-f481-472d-b974-63da857a0420"
+      SEJAM_BASE_URL: "https://api.sejam.ir:8080/v0.1"
+      SEJAM_USER: "197"
+      SEJAM_PASSWORD: "br@Vi83jM"
+    depends_on:
+      - bsc-project-database
+    command: ./docker-entrypoint.sh
+    ports:
+      - "5000:5000"
+
+
+  bsc-project-frontend:
+    container_name: "bsc-project-frontend"
+    image: "bsc-project-frontend"
+    restart: always
+    build:
+      context: ./bsc-project-frontend
+    environment:
+      NEXT_PUBLIC_RECAPTCHA_SITEKEY: "6LezhF0iAAAAACFE4z35vDbWZFrxR1HcsZS2KwbW"
+    depends_on:
+      - bsc-project-backend
+    command: ./docker-entrypoint.sh
+
+
+volumes:
+  bsc-project-volume:
