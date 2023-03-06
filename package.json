@@ -16,13 +16,13 @@
     "up:dev": "yarn run build && yarn run start:dev",
     "up:production": "yarn run build && yarn run start:prod",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "prisma:dev:deploy": "prisma migrate deploy",
+    "prisma:dev:deploy": "dotenv -e .env.development -- prisma migrate deploy",
     "db:dev:rm": "cd dockerDatabase && docker compose rm bsc-project-database -s -f -v && docker volume rm -f dockerdatabase_bsc-project-volume",
     "db:dev:up": "cd dockerDatabase && docker compose up bsc-project-database -d",
-    "db:dev:restartSeed": "yarn db:dev:rm && yarn db:dev:up && sleep 1 && yarn prisma:dev:deploy && yarn run prisma:dev:seed",
-    "prisma:dev:migrate": "prisma migrate dev --name \"migrate\"",
-    "prisma:dev:studio": "prisma studio -p 45436",
-    "prisma:dev:seed": "ts-node prisma/seed/seed.ts"
+    "db:dev:restartSeed": "dotenv -e .env.development -- yarn db:dev:rm && yarn db:dev:up && sleep 1 && yarn prisma:dev:deploy && yarn run prisma:dev:seed",
+    "prisma:dev:migrate": "dotenv -e .env.development -- prisma migrate dev --name \"migrate\"",
+    "prisma:dev:studio": "dotenv -e .env.development -- prisma studio -p 45436",
+    "prisma:dev:seed": "dotenv -e .env.development -- ts-node prisma/seed/seed.ts"
   },
   "dependencies": {
     "@nestjs/common": "^9.3.9",

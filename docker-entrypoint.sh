@@ -2,7 +2,7 @@
 
 echo "Waiting for PostgresDB to start..."
 chmod +x wait-for
-./wait-for maskanplus-database:5432
+./wait-for bsc-project-database:5432
 
 echo "Migrating the database..."
 yarn prisma migrate deploy
