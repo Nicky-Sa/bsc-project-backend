@@ -8,4 +8,4 @@ echo "Migrating the database..."
 yarn prisma migrate deploy
 
 echo "Building and Starting the backend..."
-yarn run production
+yarn run up:production

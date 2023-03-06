@@ -8,5 +8,5 @@ RUN yarn
 COPY . .
 RUN yarn prisma generate
 RUN chmod 755 docker-entrypoint.sh
-EXPOSE 5000
-CMD ["yarn", "run", "production"]
+EXPOSE 5005
+CMD ["yarn", "run", "up:production"]

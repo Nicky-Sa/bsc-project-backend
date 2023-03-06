@@ -5,6 +5,7 @@ import { LoggerInterceptor, TransformResponseInterceptor } from './services/inte
 import { ErrorFilter } from './services/filters';
 import * as cookieParser from 'cookie-parser';
 import { addUuid } from './services/middleware';
+import { Logger } from '@/services/helper/colorize';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -21,6 +22,7 @@ async function bootstrap() {
   app.use(cookieParser());
   app.use(addUuid);
   await app.listen(process.env.PORT);
+  Logger.info(`Connected to port: ${process.env.PORT}`);
 }
 
 bootstrap();

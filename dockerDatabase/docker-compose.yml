@@ -18,22 +18,6 @@ services:
     networks:
       - bsc-project-network
 
-  test-bsc-project-database:
-    image: postgres
-    container_name: test-bsc-project-database
-    restart: always
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123456ABCabc
-      POSTGRES_DB: bsc-project-database
-    volumes:
-      - bsc-project-volume:/var/lib/postgresql/data
-    ports:
-      # systemPort:containerPort
-      - "5437:5432"
-    networks:
-      - bsc-project-network
-
 networks:
   bsc-project-network:
 
