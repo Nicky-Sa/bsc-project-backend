@@ -7,8 +7,5 @@ chmod +x wait-for
 echo "Migrating the database..."
 yarn prisma migrate deploy
 
-echo "Building the backend..."
-yarn run build
-
-echo "Starting the server..."
-yarn run start:prod
+echo "Building and Starting the backend..."
+yarn run production

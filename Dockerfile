@@ -1,12 +1,12 @@
-FROM node:19
+FROM node:19.6.0
 
+RUN apt-get -q update && apt-get -qy install netcat
 WORKDIR /app
 COPY package.json ./
 COPY yarn.lock ./
 RUN yarn
 COPY . .
-EXPOSE 5000
 RUN yarn prisma generate
-RUN yarn run prebuild
-RUN yarn run build
-CMD ["yarn", "run", "start:prod"]
+RUN chmod 755 docker-entrypoint.sh
+EXPOSE 5000
+CMD ["yarn", "run", "production"]
