@@ -5,6 +5,9 @@ import { GetUser } from '@/models/auth/decorator';
 import { PartialUser, User } from 'models/user/entities';
 import { UpdateUserDto } from 'models/user/dto';
 import { PersianMessages } from '@/utils/persianTexts';
+import { PackagesLevel } from '@/models/auth/decorator/has-package';
+import { PackagesLevelEnum } from '@/models/auth/packagesLevel.enum';
+import { PackageLevelGuard } from '@/models/auth/guard/packageLevel.guard';
 
 @UseGuards(JwtGuard) // a guard for the controller
 @Controller('users')
@@ -23,6 +26,8 @@ export class UserController {
   }
 
   @Put('update')
+  @PackagesLevel(PackagesLevelEnum.Gold)
+  @UseGuards(PackageLevelGuard)
   async updateUser(@GetUser('username') username: User['username'], @Body() dto: UpdateUserDto) {
     return {
       data: await this.userService.updateUser(username, dto),

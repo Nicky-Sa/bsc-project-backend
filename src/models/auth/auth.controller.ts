@@ -8,6 +8,7 @@ const tokenCookieOptions = {
   sameSite: 'none' as const,
   httpOnly: true,
   secure: true,
+  //   TODO: cookie
 };
 
 @Controller('auth')
