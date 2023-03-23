@@ -72,12 +72,6 @@ model TagBalanceUsage {
   @@unique([tagId, month])
 }
 
-enum PackageLevel {
-  gold
-  silver
-  bronze
-}
-
 model PackageFeature {
   id           String   @id
   packageLevel String?
@@ -97,7 +91,7 @@ model Transaction {
   id             Int      @id @default(autoincrement())
   username       String
   reason         String
-  value         Int
+  value          Int
   status         String
   dateTime       DateTime @default(now())
   associatedUser User     @relation(fields: [username], references: [username], onDelete: Cascade, onUpdate: Cascade)

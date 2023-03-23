@@ -2,13 +2,20 @@ import { ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from '@/models/prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
-import { User } from 'models/user/entities';
-import { PersianErrors } from '@/utils/persianTexts';
-import { UpdateUserDto } from 'models/user/dto';
+import { User } from '@/models/user/entities';
+import { PersianErrors } from '@/utils/persianTexts.enum';
+import { BuyNewPackageDto, UpdateUserDto } from '@/models/user/dto';
+import { PackagesService } from '@/models/packages/packages.service';
+import { TransactionsService } from '@/models/transactions/transactions.service';
+import { translate } from '@/utils/functions';
 
 @Injectable()
 export class UserService {
-  constructor(private prismaService: PrismaService) {}
+  constructor(
+    private prismaService: PrismaService,
+    private packagesServices: PackagesService,
+    private transactionsService: TransactionsService,
+  ) {}
 
   async create(data: User) {
     try {
@@ -41,6 +48,27 @@ export class UserService {
     });
     if (!user) {
       throw new ForbiddenException(PersianErrors.noSuchUser);
+    }
+    return user;
+  }
+
+  async buyNewPackage(username: User['username'], dto: BuyNewPackageDto) {
+    const packagePrice = parseInt(
+      (await this.packagesServices.findOne(dto.packageLevel))?.features.find((feature) => feature.key === 'قیمت').value,
+    );
+    if (!packagePrice) {
+      throw new ForbiddenException(PersianErrors.noSuchPackage);
+    }
+
+    const user = await this.prismaService.user.update({
+      where: { username },
+      data: { currentPackageLevel: dto.packageLevel, currentBalance: packagePrice },
+    });
+
+    if (!user) {
+      throw new ForbiddenException(PersianErrors.noSuchUser);
+    } else {
+      await this.transactionsService.add(username, packagePrice, ` خرید پکیج ${translate(dto.packageLevel)}`);
     }
     return user;
   }

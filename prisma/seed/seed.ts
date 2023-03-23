@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-import { packagesData, tagzBalanceUsages, tagzBatteries, tagzLocations, tagzMessages, transactions } from "./mockData";
+import { PrismaClient } from '@prisma/client';
+import { packagesData, tagzBalanceUsages, tagzBatteries, tagzLocations, tagzMessages, transactions } from './mockData';
 
 const prisma = new PrismaClient();
 
@@ -67,7 +67,7 @@ async function main() {
         tagId: tagzMessage.tagId,
         type: tagzMessage.type,
         text: tagzMessage.text,
-        dateTime: new Date(tagzMessage.dateTime)
+        dateTime: new Date(tagzMessage.dateTime),
       },
     });
   }
@@ -78,8 +78,8 @@ async function main() {
         tagId: tagzLocation.tagId,
         lat: tagzLocation.lat,
         lon: tagzLocation.lon,
-        dateTime: new Date(tagzLocation.dateTime)
-      }
+        dateTime: new Date(tagzLocation.dateTime),
+      },
     });
   }
 
@@ -88,8 +88,8 @@ async function main() {
       data: {
         tagId: tagzBalanceUsage.tagId,
         value: tagzBalanceUsage.value,
-        month: tagzBalanceUsage.month
-      }
+        month: tagzBalanceUsage.month,
+      },
     });
   }
   for (const transaction of transactions) {
@@ -99,8 +99,8 @@ async function main() {
         reason: transaction.reason,
         value: transaction.value,
         status: transaction.status,
-        dateTime: new Date(transaction.dateTime)
-      }
+        dateTime: new Date(transaction.dateTime),
+      },
     });
   }
 }

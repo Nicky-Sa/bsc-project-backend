@@ -1,4 +1,5 @@
-import { IsNumberString, IsOptional } from "class-validator";
+import { IsNotEmpty, IsNumberString, IsOptional } from 'class-validator';
+import { PackagesLevelEnum } from '@/utils/packagesLevel.enum';
 
 export class UpdateUserDto {
   @IsOptional()
@@ -7,4 +8,9 @@ export class UpdateUserDto {
 
   @IsOptional()
   fullName?: string;
+}
+
+export class BuyNewPackageDto {
+  @IsNotEmpty()
+  packageLevel: PackagesLevelEnum;
 }

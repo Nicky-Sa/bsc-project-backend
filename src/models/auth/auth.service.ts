@@ -5,7 +5,7 @@ import * as bcrypt from 'bcrypt';
 import { User } from '@/models/user/entities';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
-import { PersianErrors } from '@/utils/persianTexts';
+import { PersianErrors } from '@/utils/persianTexts.enum';
 
 @Injectable()
 export class AuthService {
