@@ -7,4 +7,4 @@ In this project, I've implemented a back-end for serving APIs to make the front-
 - Using Prisma ORM to work with the database 💿
 - Using [Axios](https://axios-http.com/) for requests 🌐
 - With Cookies-based authentication and authorization 🍪
-- Used by [Next.js](https://nextjs.org/) front-end dashboard, you can check [this repo](https://github.com/Nicki-Di/bsc-project-frontend/) for the front-end code. 🧞‍♂️
+- Used by [Next.js](https://nextjs.org/) front-end dashboard, you can check [this repo](https://github.com/Nicki-Di/bsc-project-frontend/) for the front-end code 🧞‍♂️
